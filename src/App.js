@@ -6,6 +6,8 @@ import {BrowserRouter as Router, Switch,Route} from 'react-router-dom'
 import Home from './components/Home';
 import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
+import Debits from './components/Debits';
+import Credits from './components/Credits';
 
 
 class App extends Component {
@@ -16,7 +18,9 @@ class App extends Component {
       currentUser: {
         userName: 'bob_loblaw',
         memberSince: '08/23/99',
-      }
+      },
+      debits: [],
+      credits: []
     }
   }
 
@@ -25,11 +29,6 @@ class App extends Component {
     newUser.userName = logInInfo.userName
     this.setState({currentUser: newUser})
   }
-
-  updateAccountBalance = (acc) => {
-
-  }
-
 
   render(){
     const HomeComponent = () => (
@@ -42,6 +41,14 @@ class App extends Component {
     const LogInComponent = () => (
       <LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} {...this.props}/>
     );
+    const DebitComponent = () => (
+      <Debits debit={this.state.debits}/>
+    );
+
+    const CreditComponent = () => (
+      <Credits credit={this.state.credits}/>
+    );
+
 
     return (
       <Router>
@@ -49,6 +56,8 @@ class App extends Component {
           <Route exact path="/" render={HomeComponent}/>
           <Route exact path="/userProfile" render={UserProfileComponent}/>
           <Route exact path="/login" render={LogInComponent}/>
+          <Route exact path="/debits" render={DebitComponent}/>
+          <Route exact path="/credits" render={CreditComponent}/>
         </Switch>
       </Router>
     );
