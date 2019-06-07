@@ -26,14 +26,22 @@ class App extends Component {
     this.setState({currentUser: newUser})
   }
 
+  updateAccountBalance = (acc) => {
+
+  }
+
 
   render(){
-    const HomeComponent = () => (<Home accountBalance={this.state.accountBalance}/>);
+    const HomeComponent = () => (
+      <Home accountBalance={this.state.accountBalance}/>
+    );
     const UserProfileComponent = () => (
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
     );
 
-    const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} {...this.props}/>)
+    const LogInComponent = () => (
+      <LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} {...this.props}/>
+    );
 
     return (
       <Router>
